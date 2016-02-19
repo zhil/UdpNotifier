@@ -1,18 +1,19 @@
 {
-  "name": "zhil/udp-notifier",
+  "name": "zhil/UdpNotifier",
   "description": "Push UDP notifications to listener",
   "keywords": [
     "push",
     "UDP",
-    "status page"
+    "status page",
+    "php"
   ],
-  "homepage": "https://github.com/zhil/udp-notifier",
+  "homepage": "https://github.com/zhil/UdpNotifier",
   "license": "MIT",
   "authors": [
     {
       "name": "Andrew Zhilin",
       "email": "starsfm@gmail.com",
-      "homepage": "https://github.com/zhil/udp-notifier"
+      "homepage": "https://github.com/zhil/UdpNotifier"
     }
   ],
   "require": {
@@ -21,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "UdpNotifier\\": "src/UdpNotifier"
+      "Zhil\\UdpNotifier\\": "src/UdpNotifier"
     }
   }
 }

@@ -41,16 +41,7 @@ class Notifier
         if($this->socket) {
             return $this->socket;
         }
-        $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-
-        $msg = "Ping !";
-        $len = strlen($msg);
-
-        $time = microtime(true);
-        for($i = 1;$i<=10000 ;$i++) {
-
-        }
-        echo("Done in ".(microtime(true) - $time));
+        return $this->socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
     }
 
     private function close()
@@ -60,7 +51,7 @@ class Notifier
         }
     }
 
-    private function __destruct()
+    public function __destruct()
     {
         $this->close();
     }
