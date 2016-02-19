@@ -1,5 +1,5 @@
 <?php
-namespace UdpNotifier;
+namespace Zhil\UdpNotifier;
 
 use React\Datagram\Socket;
 
