@@ -18,6 +18,14 @@ class Notifier
         $this->secret = $secret;
     }
 
+    public function cmd($cmd,$data = [])
+    {
+        // TODO: send notifier version?
+        $data["secret"] = $this->secret;
+        $data["cmd"] = $cmd;
+        $this->send(json_encode($data));
+    }
+
     public function ping()
     {
         // TODO: ping feature could be implemented using https://github.com/reactphp/datagram
