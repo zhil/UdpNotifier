@@ -18,12 +18,10 @@ class Notifier
         $this->secret = $secret;
     }
 
-    public function cmd($cmd,$data = [])
+    public function notification($name,$data = [])
     {
         // TODO: send notifier version?
-        $data["secret"] = $this->secret;
-        $data["cmd"] = $cmd;
-        $this->send(json_encode($data));
+        $this->send(json_encode(["secret"=>$this->secret,"name"=>$name,"data"=>$data]));
     }
 
     public function ping()
@@ -38,10 +36,10 @@ class Notifier
 
     private function getSocket()
     {
-        if($this->socket) {
-            return $this->socket;
+        if(!$this->socket) {
+            $this->socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
         }
-        return $this->socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+        return $this->socket;
     }
 
     private function close()
