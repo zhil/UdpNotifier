@@ -1,5 +1,5 @@
 {
-  "name": "zhil/UdpNotifier",
+  "name": "zhil/udp-notifier",
   "description": "Push UDP notifications to listener",
   "keywords": [
     "push",
