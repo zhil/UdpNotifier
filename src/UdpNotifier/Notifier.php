@@ -11,16 +11,18 @@ class Notifier
 
     private $socket;
 
+    private $simpleCrypto;
+
     public function __construct($udpServerIp,$udpServerPort,$secret)
     {
         $this->udpServerIp = $udpServerIp;
         $this->udpServerPort = $udpServerPort;
         $this->secret = $secret;
+        $this->simpleCrypto = new SimpleCrypto($this->secret);
     }
 
     public function notification($name,$data = [])
     {
-        // TODO: send notifier version?
         $this->send(json_encode(["secret"=>$this->secret,"name"=>$name,"data"=>$data]));
     }
 
@@ -31,7 +33,8 @@ class Notifier
 
     private function send($msg)
     {
-        return socket_sendto($this->getSocket(), $msg, strlen($msg), 0, $this->udpServerIp, $this->udpServerPort);
+        $encrypted = $this->simpleCrypto->encrypt($msg);
+        return socket_sendto($this->getSocket(), $encrypted, strlen($encrypted), 0, $this->udpServerIp, $this->udpServerPort);
     }
 
     private function getSocket()
